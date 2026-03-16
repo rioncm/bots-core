@@ -29,6 +29,7 @@ dependencies = []
 dev = [
   "build>=1.2",
   "ruff>=0.11",
+  "twine>=5.1",
 ]
 test = [
   "pytest>=8.3",
@@ -40,6 +41,12 @@ template = [
   "Django>=4",
   "Genshi",
 ]
+
+[project.urls]
+Homepage = "https://github.com/rioncm/bots-core"
+Repository = "https://github.com/rioncm/bots-core"
+Issues = "https://github.com/rioncm/bots-core/issues"
+PyPI = "https://pypi.org/project/botscore/"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

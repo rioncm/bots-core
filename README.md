@@ -50,3 +50,14 @@ Because `botscore` now lives in its own repository, standard tags are sufficient
 ```text
 v0.1.0
 ```
+
+## PyPI publishing
+
+This repository publishes `botscore` to PyPI through GitHub Actions Trusted Publisher.
+
+The release flow is:
+
+1. push a release tag such as `v0.1.0`
+2. the `publish.yml` workflow builds wheel and sdist artifacts
+3. the workflow validates metadata with `twine check`
+4. GitHub publishes to PyPI through the `pypi` environment
