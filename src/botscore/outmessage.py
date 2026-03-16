@@ -5,41 +5,38 @@ Bots outmessage lib
 # pylint: disable=invalid-name, missing-class-docstring, missing-function-docstring, duplicate-code, too-many-lines
 # pylint: disable=too-many-branches, too-many-statements, attribute-defined-outside-init, consider-using-f-string
 
-from collections import OrderedDict
 import decimal
 import json as simplejson
 import time
+from collections import OrderedDict
 from xml.etree import ElementInclude as ETI
 
 # bots-modules
-from . import grammar
+from . import grammar, message, node, xmlutil
 from . import imports as core_imports
 from . import io as core_io
-from . import message
-from . import node
 from . import paths as core_paths
 from . import state as botsglobal
 from . import text as core_text
-from . import xmlutil
 from .constants import (
-    DECIMALS,
-    MINLENGTH,
-    FORMAT,
     BFORMAT,
-    FORMATFROMGRAMMAR,
-    LENGTH,
     BOTSIDNR,
+    DECIMALS,
+    FIELDS,
+    FORMAT,
+    FORMATFROMGRAMMAR,
     ID,
-    MPATH,
+    ISFIELD,
+    LENGTH,
+    LEVEL,
     MANDATORY,
     MAX,
     MAXREPEAT,
-    SUBFIELDS,
-    FIELDS,
+    MINLENGTH,
+    MPATH,
     SFIELD,
+    SUBFIELDS,
     VALUE,
-    ISFIELD,
-    LEVEL,
 )
 from .errors import BotsImportError, OutMessageError, txtexc
 from .i18n import gettext as _
@@ -625,7 +622,8 @@ class Outmessage(message.Message):
                 # fixed decimals; round
                 try:
                     dec_value = decimal.Decimal(value)
-                    dec_value = dec_value.quantize(decimal.Decimal(f"10e-{field_definition[DECIMALS]}"))
+                    quantizer = decimal.Decimal(f"10e-{field_definition[DECIMALS]}")
+                    dec_value = dec_value.quantize(quantizer)
                     if self.ta_info.get("json_write_numericals"):
                         if field_definition[DECIMALS] == 0:
                             return int(dec_value)
@@ -1157,7 +1155,7 @@ class json(Outmessage):
         for childnode in node_instance.children:
             key = childnode.record['BOTSID']
             if childnode.linpos_info == 'OK':
-                # linpos_info indicates here this node occurs only once -> dict in json, not a list of dicts
+                # linpos_info indicates a single dict, not a list of dicts.
                 newjsonobject[key] = self._node2json(childnode)
             else:
                 if key in newjsonobject:
@@ -1283,7 +1281,10 @@ class templatehtml(Outmessage):
                 self.template = core_imports.botsbaseimport('genshi.template')
             except ImportError as exc:
                 raise ImportError(
-                    _('Dependency failure: editype "templatehtml" requires python library "genshi".')
+                    _(
+                        'Dependency failure: editype "templatehtml" requires '
+                        'python library "genshi".'
+                    )
                 ) from exc
         elif self.template_engine:
             raise OutMessageError(f"template_engine ({self.template_engine}) not supported !")
@@ -1322,7 +1323,11 @@ class templatehtml(Outmessage):
                 context['data'] = self.data
             # Django template render
             if self.template_engine == 'django':
-                with core_io.opendata(self.ta_info['filename'], 'w', self.ta_info['charset']) as filehandler:
+                with core_io.opendata(
+                    self.ta_info['filename'],
+                    'w',
+                    self.ta_info['charset'],
+                ) as filehandler:
                     filehandler.write(tmpl.render(context))
             # genshi template render
             elif self.template_engine == 'genshi':

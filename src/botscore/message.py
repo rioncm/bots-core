@@ -4,26 +4,26 @@ Bots message lib
 # pylint: disable=missing-function-docstring
 
 # bots-modules
-from . import state as botsglobal
 # from . import grammar
 from . import node
+from . import state as botsglobal
 from .constants import (
     BOTSIDNR,
-    ID,
-    MPATH,
-    MANDATORY,
-    MAXREPEAT,
-    SUBFIELDS,
     FIELDS,
-    SFIELD,
-    VALUE,
-    MIN,
-    MAX,
+    ID,
     ISFIELD,
     LEVEL,
+    MANDATORY,
+    MAX,
+    MAXREPEAT,
+    MIN,
+    MPATH,
+    SFIELD,
+    SUBFIELDS,
+    VALUE,
 )
-from .i18n import gettext as _
 from .errors import MappingFormatError, MappingRootError, MessageError, MessageRootError
+from .i18n import gettext as _
 
 
 class Message:

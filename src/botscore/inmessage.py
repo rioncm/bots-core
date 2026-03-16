@@ -9,42 +9,39 @@ import json as simplejson
 import time
 
 # bots-modules
-from . import grammar
+from . import grammar, message, node, outmessage
 from . import imports as core_imports
 from . import io as core_io
-from . import message
-from . import node
-from . import outmessage
 from . import paths as core_paths
 from . import routing as core_routing
 from . import scripts as core_scripts
 from . import state as botsglobal
 from . import text as core_text
 from .constants import (
-    OK,
-    TRANSLATED,
-    SUBTRANSLATION,
-    DECIMALS,
-    MINLENGTH,
-    LIN,
-    POS,
-    MIN,
-    MAX,
     BFORMAT,
-    LENGTH,
     BOTSIDNR,
-    ID,
-    MPATH,
-    MAXREPEAT,
-    SUBFIELDS,
+    DECIMALS,
     FIELDS,
-    SFIELD,
-    VALUE,
-    ISFIELD,
-    FIXEDLINE,
     FIXED_RECORD_LENGTH,
-    QUERIES,
+    FIXEDLINE,
+    ID,
+    ISFIELD,
+    LENGTH,
     LEVEL,
+    LIN,
+    MAX,
+    MAXREPEAT,
+    MIN,
+    MINLENGTH,
+    MPATH,
+    OK,
+    POS,
+    QUERIES,
+    SFIELD,
+    SUBFIELDS,
+    SUBTRANSLATION,
+    TRANSLATED,
+    VALUE,
 )
 from .db import unique as unique_counter
 from .errors import BotsImportError, InMessageError, TranslationNotFoundError, txtexc

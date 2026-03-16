@@ -9,7 +9,7 @@ from botsconfig import *
 # ***for statust in ta:
 OPEN     = 0  # Bots always closes transaction. OPEN is severe error
 ERROR    = 1  # error in transaction.
-OK       = 2  # successfull, result is 'save'. Should be picked up in same run. If automatic evaluation finds this: is 'stuck'.
+OK       = 2  # successful result is 'save'; automatic evaluation treats it as 'stuck'
 DONE     = 3  # successfull, and result is picked up by next step
 RESEND   = 4  # file has been resend.
 NO_RETRY = 5  # file has been resend.

@@ -8,9 +8,9 @@ import decimal
 # bots-modules
 from . import state as botsglobal
 from . import text as core_text
-from .constants import BOTSIDNR, ID, QUERIES, MPATH, SUBFIELDS, FIELDS, ISFIELD, LEVEL
-from .i18n import gettext as _
+from .constants import BOTSIDNR, FIELDS, ID, ISFIELD, LEVEL, MPATH, QUERIES, SUBFIELDS
 from .errors import MappingFormatError, MappingRootError
+from .i18n import gettext as _
 
 
 class Node:

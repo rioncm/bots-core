@@ -7,27 +7,26 @@ Bots grammar lib
 # bots-modules
 from . import imports as core_imports
 from .constants import (
-    DECIMALS,
-    MINLENGTH,
-    MIN,
-    MAX,
     BFORMAT,
-    LENGTH,
     BOTSIDNR,
-    ID,
-    MPATH,
-    MAXREPEAT,
-    SUBFIELDS,
+    DECIMALS,
     FIELDS,
-    ISFIELD,
     FIXED_RECORD_LENGTH,
+    FORMAT,
+    ID,
+    ISFIELD,
+    LENGTH,
     LEVEL,
     MANDATORY,
-    FORMAT,
+    MAX,
+    MAXREPEAT,
+    MIN,
+    MINLENGTH,
+    MPATH,
+    SUBFIELDS,
 )
-from .i18n import gettext as _
 from .errors import BotsImportError, GrammarError, GrammarPartMissing
-
+from .i18n import gettext as _
 
 # used in this module to indicate part of grammar is already read and/or has errors
 # no record should be called like this ;-))

@@ -27,7 +27,13 @@ def opendata(filename, mode, charset=None, errors="strict", resolve_abspathdata=
 
 def readdata(filename, charset=None, errors="strict", resolve_abspathdata=None):
     """read internal data file in memory as unicode."""
-    with opendata(filename, "r", charset, errors, resolve_abspathdata=resolve_abspathdata) as filehandler:
+    with opendata(
+        filename,
+        "r",
+        charset,
+        errors,
+        resolve_abspathdata=resolve_abspathdata,
+    ) as filehandler:
         return filehandler.read()
 
 

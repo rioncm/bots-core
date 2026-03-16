@@ -6,8 +6,7 @@ from __future__ import annotations
 
 from . import state
 from .constants import FILEOUT, OK
-from .db import query
-from .db import changeq
+from .db import changeq, query
 
 
 def globalcheckconfirmrules(confirmtype):
@@ -50,7 +49,8 @@ def checkconfirmrules(confirmtype, **kwargs):
 def lookup_translation(frommessagetype, fromeditype, alt, frompartner, topartner):
     """
     Lookup the translation:
-    frommessagetype, fromeditype, alt, frompartner, topartner -> mappingscript, tomessagetype, toeditype
+    frommessagetype, fromeditype, alt, frompartner, topartner ->
+    mappingscript, tomessagetype, toeditype
     """
     for row in query(
         """SELECT tscript,tomessagetype,toeditype
