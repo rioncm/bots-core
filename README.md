@@ -27,9 +27,10 @@ It intentionally excludes the larger legacy Bots application surface such as:
 ## Local development
 
 ```bash
-pip install -e .[dev,test]
+pip install -e .[dev,test,docs]
 pytest
 python -m build --wheel --sdist --no-isolation
+mkdocs build
 ```
 
 ## Versioning
